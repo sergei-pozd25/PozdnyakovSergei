@@ -40,6 +40,7 @@ void EXTI15_10_IRQHandler() {
 
 
 int main() {
+	
 	RCC->AHB1ENR |= 1ul << 6;
 	RCC->AHB1ENR |= 1ul << 0;
 	RCC->APB2ENR |= 1ul << 14;
@@ -60,7 +61,7 @@ int main() {
 	SYSCFG->EXTICR[3] |= SYSCFG_EXTICR4_EXTI15_PG;
 	
 	NVIC_SetPriority(6, 1);
-	NVIC_SetPriority(40, 0);;
+	NVIC_SetPriority(40, 0);
 	NVIC_EnableIRQ(6);
 	NVIC_EnableIRQ(40);
 	
@@ -69,5 +70,6 @@ int main() {
 		delay1();
 		GPIOG->ODR &= ~GPIO_ODR_OD7;
 		delay1();
+		
 	}
 }
