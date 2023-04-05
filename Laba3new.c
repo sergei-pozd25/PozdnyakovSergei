@@ -17,7 +17,7 @@ void delay2() {
 
 void EXTI0_IRQHandler() {
 	unsigned int i = 0;
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 4; i++) {
 		GPIOG->ODR |= GPIO_ODR_OD6;
 		delay1();
 		GPIOG->ODR &= ~GPIO_ODR_OD6;
@@ -29,7 +29,7 @@ void EXTI0_IRQHandler() {
 
 void EXTI15_10_IRQHandler() {
 	unsigned int i = 0;
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 4; i++) {
 		GPIOG->ODR |= GPIO_ODR_OD8;
 		delay1();
 		GPIOG->ODR &= ~GPIO_ODR_OD8;
