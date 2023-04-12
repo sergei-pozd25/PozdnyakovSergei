@@ -9,12 +9,22 @@ void delay(int delay)
 }
 
 
- void EXTI0_IRQHandler(void) {
+ void EXTI0_IRQHandler() {
 	delay(2000000);
 	SCB->SCR ^= SCB_SCR_SLEEPONEXIT_Msk;
 	EXTI->RTSR ^= EXTI_RTSR_TR0;
 	EXTI->FTSR ^= EXTI_FTSR_TR0;
 	EXTI->PR |= EXTI_PR_PR0;
+}
+
+
+void TIM6_DAC_IRQHandler() {
+	if(!(TIM6->SR & TIM_SR_UIF)) {
+		return;} 
+	if (TIM6->CNT) {
+		return;}
+	GPIOG->ODR ^= GPIO_ODR_ODR_6 | GPIO_ODR_ODR_7;
+	TIM6->SR &= ~TIM_SR_UIF;
 }
 
 
@@ -68,15 +78,3 @@ int main ()
 	while(1) {}
 }
 
-	void TIM6_DAC_IRQHandler(void) 
-	{
-		if(!(TIM6->SR & TIM_SR_UIF)) {
-			return;
-			
-		}
-		if (TIM6->CNT) {
-			return;
-		}
-		GPIOG->ODR ^= GPIO_ODR_ODR_6 | GPIO_ODR_ODR_7;
-		TIM6->SR &= ~TIM_SR_UIF;
-	}
