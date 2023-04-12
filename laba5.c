@@ -1,5 +1,6 @@
 #include "stm32f2xx_hal.h"              // Keil::Device:STM32Cube HAL:Common
 
+
 DAC_HandleTypeDef DacHandle; 
 DAC_ChannelConfTypeDef sConfig; 
 
@@ -7,6 +8,7 @@ RCC_ClkInitTypeDef RCC_ClkInitStruct;
 RCC_OscInitTypeDef RCC_OscInitStruct;
 
 GPIO_InitTypeDef GPIO_InitStruct; 
+
 
 void SystemClock_Config(void) {
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
@@ -48,7 +50,7 @@ int main(void) {
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_DISABLE;
 
 	HAL_DAC_ConfigChannel(& DacHandle, & sConfig, DAC_CHANNEL_1);
-	HAL_DAC_SetValue(& DacHandle, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 4095);  //4095 quantization levels
+	HAL_DAC_SetValue(& DacHandle, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2730);  //4095 quantization levels
 	
 	HAL_DAC_Start(& DacHandle, DAC_CHANNEL_1); 
 
