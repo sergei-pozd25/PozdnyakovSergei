@@ -4,7 +4,7 @@
 
 void delay(int delay)
 {
-	int i = 0;
+	unsigned int i = 0;
 	for(i=0; i < delay; i++) {}
 }
 
@@ -68,11 +68,11 @@ int main ()
 	
 	//{
 	NVIC_SetPriorityGrouping(5);
-	NVIC_SetPriority(EXTI0_IRQn, 0);
-	NVIC_SetPriority(TIM6_DAC_IRQn, 4);
+	NVIC_SetPriority(6, 0);  // 6 = EXTI0_IRQn
+	NVIC_SetPriority(54, 4);  // 54 = TIM6_DAC_IRQn
 	
-	NVIC_EnableIRQ(EXTI0_IRQn);
-	NVIC_EnableIRQ(TIM6_DAC_IRQn);
+	NVIC_EnableIRQ(6);
+	NVIC_EnableIRQ(54);
 	//}
 	
 	while(1) {}
