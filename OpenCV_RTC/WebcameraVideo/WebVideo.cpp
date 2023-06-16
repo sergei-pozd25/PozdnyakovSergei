@@ -1,3 +1,5 @@
+//Пример для вывод изображения с вебкамеры на монитор
+
 #include <opencv4/opencv2/opencv.hpp>
 #include <opencv4/opencv2/videoio.hpp>
 #include <opencv4/opencv2/core/utility.hpp>
