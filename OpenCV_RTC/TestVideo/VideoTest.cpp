@@ -9,21 +9,23 @@ using namespace std;
 using namespace cv;
 
 int main(int argc, char** argv) {
-
-    Mat frame;
+    Mat video;
     VideoCapture capture;
-    capture.open(0);
+    string filename = "/home/sergei/Видео/BOATS.MOV";
+    capture.open(filename);
 
     while (1) {
-        capture >> frame;
+        capture >> video;
 
-        if (frame.empty()) break;
+        if (video.empty()) break;
 
-        imshow("W", frame);
-
+        resize(video, video, Size(), 0.5, 0.5, INTER_NEAREST);
+        // resize output video
+        imshow(filename, video);
+        // output video on screen
         if (waitKey(30) >= 0) break;
         //click escape button to turn video off
     }
-    cout << "Video test" << endl;
+    cout << filename << endl;
     return 0;
 }
