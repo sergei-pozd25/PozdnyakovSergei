@@ -29,6 +29,8 @@ int main(int argc, char** argv) {
             break;
         case 1 ... 9: cam_name = "Not built-in camera";
             break; }
+    cout << cam_name << endl;
+
 
     while (1) {
         capture >> video;
@@ -39,6 +41,5 @@ int main(int argc, char** argv) {
         // output video on screen
         if (waitKey(40) >= 0) break;  //click any button to turn video off
     }
-    cout << cam_name << endl;
     return 0;
 }
