@@ -3,6 +3,7 @@
 #include <opencv4/opencv2/highgui.hpp>
 #include <opencv4/opencv2/core/core.hpp>
 #include <iostream>
+
 using namespace std;
 using namespace cv;
 
@@ -16,7 +17,7 @@ Camera_Exceptions NO_CAMERA ("Сamera with this index is not connected");
 
 
 int main(int argc, char** argv) {
-    Mat video;
+    Mat video, video_resized;
     string cam_name;
     VideoCapture capture;
     unsigned int index;
@@ -32,9 +33,9 @@ int main(int argc, char** argv) {
     while (1) {
         capture >> video;
         if (video.empty()) break;
-        resize(video, video, Size(), 0.5, 0.5, INTER_NEAREST);
+        resize(video, video_resized, Size(), 0.5, 0.5, INTER_NEAREST);
         // resize output video
-        imshow(cam_name, video);
+        imshow(cam_name, video_resized);
         // output video on screen
         if (waitKey(30) >= 0) break;  //click escape button to turn video off
     }
