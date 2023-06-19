@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
         // resize output video
         imshow(cam_name, video_resized);
         // output video on screen
-        if (waitKey(30) >= 0) break;  //click escape button to turn video off
+        if (waitKey(40) >= 0) break;  //click any button to turn video off
     }
     cout << cam_name << endl;
     return 0;
