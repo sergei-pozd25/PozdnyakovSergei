@@ -18,7 +18,7 @@ static void trackbar1(int, void*) {
     num_disparity = num_disparity * 16;
     stereo ->compute(imgl, imgr, disp);
     disp.convertTo(disparity, CV_8U);
-    cv::applyColorMap(disparity, disparity, cv::COLORMAP_JET);
+    cv::applyColorMap(disparity, disparity, cv::COLORMAP_BONE);
     cv::imshow(disparity_window.c_str(), disparity);
 }
 
@@ -27,7 +27,7 @@ static void trackbar2(int, void*) {
     stereo ->setBlockSize(block_size);
     stereo ->compute(imgl, imgr, disp);
     disp.convertTo(disparity, CV_8U);
-    cv::applyColorMap(disparity, disparity, cv::COLORMAP_JET);
+    cv::applyColorMap(disparity, disparity, cv::COLORMAP_BONE);
     cv::imshow(disparity_window.c_str(), disparity);
 }
 
@@ -36,14 +36,17 @@ int main() {
     /*std::string Left_name = "/home/sergei/Изображения/outside photo_1/Left_1.jpg";
     std::string Right_name = "/home/sergei/Изображения/outside photo_1/Right_1.jpg";*/
 
-    std::string Left_name = "/home/sergei/Изображения/imgl.png";
-    std::string Right_name = "/home/sergei/Изображения/imgr.png";
+    /*std::string Left_name = "/home/sergei/Изображения/imgl.png";
+    std::string Right_name = "/home/sergei/Изображения/imgr.png";*/
+
+    std::string Left_name = "/home/sergei/Изображения/GuitarL.jpg";
+    std::string Right_name = "/home/sergei/Изображения/GuitarR.jpg";
 
     imgl = cv::imread(Left_name);
-    //cv::resize(imgl, imgl, cv::Size(), 0.5, 0.5, cv::INTER_LINEAR);
+    cv::resize(imgl, imgl, cv::Size(), 0.5, 0.5, cv::INTER_LINEAR);
     //cv::cvtColor(imgl, imgl, cv::COLOR_BGR2GRAY);
     imgr = cv::imread(Right_name);
-    //cv::resize(imgr, imgr, cv::Size(), 0.5, 0.5, cv::INTER_LINEAR);
+    cv::resize(imgr, imgr, cv::Size(), 0.5, 0.5, cv::INTER_LINEAR);
     //cv::cvtColor(imgr, imgr, cv::COLOR_BGR2GRAY);
     cv::namedWindow(disparity_window, cv::WINDOW_NORMAL);
     cv::createTrackbar("numDisparities", disparity_window.c_str(), &num_disparity, 18, trackbar1);
