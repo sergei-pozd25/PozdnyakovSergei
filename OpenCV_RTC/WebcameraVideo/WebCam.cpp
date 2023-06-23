@@ -27,7 +27,9 @@ int main(int argc, char** argv) {
         case 0: cam_name = "Laptop webcam";
             break;
         case 1 ... 9: cam_name = "Not built-in camera";
-            break; }
+            break;
+    }
+
     cout << cam_name << endl;
 
 
