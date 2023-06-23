@@ -5,7 +5,6 @@
 #include <iostream>
 
 using namespace std;
-using namespace cv;
 
 
 class Camera_Exceptions: public std::domain_error {
@@ -17,9 +16,9 @@ Camera_Exceptions NO_CAMERA ("Сamera with this index is not connected");
 
 
 int main(int argc, char** argv) {
-    Mat video, video_resized;
+    cv::Mat video, video_resized;
     string cam_name;
-    VideoCapture capture;
+    cv::VideoCapture capture;
     unsigned int index;
     cin >> index;
     capture.open(index);
@@ -35,11 +34,11 @@ int main(int argc, char** argv) {
     while (1) {
         capture >> video;
         if (video.empty()) break;
-        resize(video, video_resized, Size(), 0.5, 0.5, INTER_NEAREST);
+        cv::resize(video, video_resized, cv::Size(), 0.5, 0.5, cv::INTER_NEAREST);
         // resize output video
-        imshow(cam_name, video_resized);
+        cv::imshow(cam_name, video_resized);
         // output video on screen
-        if (waitKey(40) >= 0) break;  //click any button to turn video off
+        if (cv::waitKey(40) >= 0) break;  //click any button to turn video off
     }
     return 0;
 }
