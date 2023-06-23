@@ -4,8 +4,8 @@
 #include <opencv4/opencv2/calib3d.hpp>
 
 
-int num_disparity = 8;
-int block_size = 5;
+int num_disparity = 20;
+int block_size = 10;
 
 cv::Ptr<cv::StereoSGBM> stereo = cv::StereoSGBM::create();
 cv::Mat disp, disparity;
